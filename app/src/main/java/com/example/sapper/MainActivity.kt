@@ -1,16 +1,10 @@
 package com.example.sapper
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.content.res.Resources
 import android.graphics.Color
-import android.icu.lang.UCharacter.GraphemeClusterBreak.V
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.marginStart
 import androidx.core.view.setMargins
 import androidx.gridlayout.widget.GridLayout
 import com.example.sapper.models.ButtonType
