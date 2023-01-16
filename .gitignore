@@ -18,6 +18,8 @@ out/
 #Gradle files
 .gradle/
 build/
+*.bin
+*.lock
 
 # Package Files #
 *.jar
