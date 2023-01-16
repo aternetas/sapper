@@ -1,6 +1,11 @@
 # Compiled class file
 *.class
 
+# Generated files
+bin/
+gen/
+out/
+
 # Log file
 *.log
 
@@ -9,6 +14,10 @@
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+
+#Gradle files
+.gradle/
+build/
 
 # Package Files #
 *.jar
