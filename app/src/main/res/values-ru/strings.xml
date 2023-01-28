@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Сапёр</string>
+    <string name="button_text">Открой меня!</string>
+    <string name="button_refresh">Обновить</string>
+    <string name="button_next">Следующий раунд</string>
+    <string name="textview_start_title">Найди зелёную плитку</string>
+    <string name="textview_next_title">Продолжай</string>
+    <string name="textview_win_title">Ты выиграл</string>
+    <string name="textview_defeat_title">Ты проиграл</string>
+</resources>
