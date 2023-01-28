@@ -3,6 +3,7 @@ package com.example.sapper.gameactivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -13,11 +14,11 @@ import com.example.sapper.R
 import com.example.sapper.models.GameCase
 
 class GameActivity : AppCompatActivity() {
+    private var vm: GameVM = GameVM()
     private lateinit var grid: GridLayout
     private lateinit var title: TextView
     private lateinit var refreshBtn: Button
     private lateinit var nextRoundBtn: Button
-    private var vm: GameVM = GameVM()
     private val tileUnopenedColor
         get() = ContextCompat.getColor(this, R.color.button_unopened_background)
     private val tileNextColor
@@ -26,7 +27,6 @@ class GameActivity : AppCompatActivity() {
         get() = ContextCompat.getColor(this, R.color.button_green_background)
     private val tileDefeatColor
         get() = ContextCompat.getColor(this, R.color.button_red_background)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,15 +44,13 @@ class GameActivity : AppCompatActivity() {
         grid.columnCount = 3
         vm.shuffleCases()
         for (i in 0 until vm.getCountGameCases()){
-            var pile = Button(this)
-            pile.text = getString(R.string.button_text)
-            pile.setBackgroundColor(tileUnopenedColor)
-            val param = GridLayout.LayoutParams(
-                GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL),
-                GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL)
-            )
+            var pile = ImageButton(this)
+            val param = GridLayout.LayoutParams()
             param.setMargins(5)
+            param.width = 190
+            param.height = 190
             pile.layoutParams = param
+
             pile.setOnClickListener {
                 when(vm.sendCaseName(i)){
                     GameCase.NEXT -> {

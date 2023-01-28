@@ -24,7 +24,7 @@
         android:id="@+id/button_refresh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_green_background"
+        android:backgroundTint="@color/button_red_background"
         android:text="@string/button_refresh"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
