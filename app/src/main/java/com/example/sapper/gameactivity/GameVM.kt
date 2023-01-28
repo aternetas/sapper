@@ -15,7 +15,7 @@ class GameVM {
         GameCase.DEFEAT
     )
 
-    fun getCountGameCases() : Int {
+    fun getGameCasesCount() : Int {
         return gameCases.count()
     }
 

@@ -2,23 +2,20 @@ package com.example.sapper.gameactivity
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.view.setMargins
 import androidx.gridlayout.widget.GridLayout
 import com.example.sapper.R
+import com.example.sapper.databinding.GameActivityBinding
 import com.example.sapper.models.GameCase
+import kotlinx.android.synthetic.main.game_activity.*
 
 class GameActivity : AppCompatActivity() {
     private var vm: GameVM = GameVM()
-    private lateinit var grid: GridLayout
-    private lateinit var title: TextView
-    private lateinit var refreshBtn: Button
-    private lateinit var nextRoundBtn: Button
+    private lateinit var bindingClass: GameActivityBinding
     private val tileUnopenedColor
         get() = ContextCompat.getColor(this, R.color.button_unopened_background)
     private val tileNextColor
@@ -30,20 +27,17 @@ class GameActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.game_activity)
-        grid = findViewById(R.id.gridlayout_grid)
-        title = findViewById(R.id.textview_title)
-        refreshBtn = findViewById(R.id.button_refresh)
-        nextRoundBtn = findViewById(R.id.button_next_round)
+        bindingClass = GameActivityBinding.inflate(layoutInflater)
+        setContentView(bindingClass.root)
 
         createGameboard()
     }
 
     fun createGameboard(){
-        grid.rowCount = 3
-        grid.columnCount = 3
+        bindingClass.grid.rowCount = 3
+        bindingClass.grid.columnCount = 3
         vm.shuffleCases()
-        for (i in 0 until vm.getCountGameCases()){
+        for (i in 0 until vm.getGameCasesCount()){
             var pile = ImageButton(this)
             val param = GridLayout.LayoutParams()
             param.setMargins(5)
@@ -55,17 +49,17 @@ class GameActivity : AppCompatActivity() {
                 when(vm.sendCaseName(i)){
                     GameCase.NEXT -> {
                         it.setBackgroundColor(tileNextColor)
-                        title.text = getString(R.string.textview_next_title)
+                        bindingClass.textviewTitle.text = getString(R.string.textview_next_title)
                     }
                     GameCase.WIN -> {
                         it.setBackgroundColor(tileWinColor)
-                        title.text = getString(R.string.textview_win_title)
-                        nextRoundBtn.isVisible = true
+                        bindingClass.textviewTitle.text = getString(R.string.textview_win_title)
+                        bindingClass.buttonNextRound.isVisible = true
                     }
                     GameCase.DEFEAT -> {
                         it.setBackgroundColor(tileDefeatColor)
-                        title.text = getString(R.string.textview_defeat_title)
-                        refreshBtn.isVisible = true
+                        bindingClass.textviewTitle.text = getString(R.string.textview_defeat_title)
+                        bindingClass.buttonRefresh.isVisible = true
                     }
                 }
             }
@@ -79,12 +73,12 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun refreshButtonClick(view: View){
-        refreshBtn.isVisible = false
+        bindingClass.buttonRefresh.isVisible = false
         refreshGameboard()
     }
 
     fun nextButtonClick(view: View){
-        nextRoundBtn.isVisible = false
+        bindingClass.buttonNextRound.isVisible = false
         refreshGameboard()
     }
 }
