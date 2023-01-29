@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.core.view.setMargins
 import androidx.gridlayout.widget.GridLayout
@@ -17,7 +18,9 @@ class GameActivity : AppCompatActivity() {
     private var vm: GameVM = GameVM()
     private lateinit var bindingClass: GameActivityBinding
     private val tileUnopenedColor
-        get() = ContextCompat.getColor(this, R.color.button_unopened_background)
+        get() = ContextCompat.getColor(this, R.color.tile_unopened_background)
+    private val tileDisableColor
+        get() = ContextCompat.getColor(this, R.color.tile_disabled_background)
     private val tileNextColor
         get() = ContextCompat.getColor(this, R.color.button_blue_background)
     private val tileWinColor
@@ -51,24 +54,42 @@ class GameActivity : AppCompatActivity() {
                         it.setBackgroundColor(tileNextColor)
                         bindingClass.textviewTitle.text = getString(R.string.textview_next_title)
                     }
+
                     GameCase.WIN -> {
                         it.setBackgroundColor(tileWinColor)
                         bindingClass.textviewTitle.text = getString(R.string.textview_win_title)
+                        bindingClass.grid.children.forEach {
+                            it.isEnabled = false
+                        }
+
                         bindingClass.buttonNextRound.isVisible = true
+                        bindingClass.buttonNextRound.setOnClickListener {
+                            nextButtonClick(it)
+                        }
                     }
+
                     GameCase.DEFEAT -> {
                         it.setBackgroundColor(tileDefeatColor)
                         bindingClass.textviewTitle.text = getString(R.string.textview_defeat_title)
+                        bindingClass.grid.children.forEach {
+                            it.isEnabled = false
+                        }
+
                         bindingClass.buttonRefresh.isVisible = true
+                        bindingClass.buttonRefresh.setOnClickListener {
+                            nextButtonClick(it)
+                        }
                     }
                 }
             }
+            
             grid.addView(pile)
         }
     }
 
     fun refreshGameboard(){
         grid.removeAllViews()
+        bindingClass.textviewTitle.text = getString(R.string.textview_start_title)
         createGameboard()
     }
 

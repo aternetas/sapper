@@ -13,7 +13,7 @@ class GameVM {
         GameCase.DEFEAT,
         GameCase.DEFEAT,
         GameCase.DEFEAT
-    )
+        )
 
     fun getGameCasesCount() : Int {
         return gameCases.count()
