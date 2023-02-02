@@ -3,7 +3,7 @@
     <string name="button_text">Open me!</string>
     <string name="button_refresh">Refresh</string>
     <string name="button_next">Next round</string>
-    <string name="textview_start_title">Find the green tile</string>
+    <string name="textview_start_title">Find a green tile</string>
     <string name="textview_next_title">Go on</string>
     <string name="textview_win_title">U won</string>
     <string name="textview_defeat_title">U lost</string>

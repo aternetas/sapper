@@ -2,7 +2,7 @@ package com.example.sapper.gameactivity
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageButton
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
@@ -41,7 +41,8 @@ class GameActivity : AppCompatActivity() {
         bindingClass.grid.columnCount = 3
         vm.shuffleCases()
         for (i in 0 until vm.getGameCasesCount()){
-            var pile = ImageButton(this)
+            var pile = Button(this)
+            pile.setBackgroundColor(tileUnopenedColor)
             val param = GridLayout.LayoutParams()
             param.setMargins(5)
             param.width = 190
@@ -62,9 +63,9 @@ class GameActivity : AppCompatActivity() {
                             it.isEnabled = false
                         }
 
-                        bindingClass.buttonNextRound.isVisible = true
-                        bindingClass.buttonNextRound.setOnClickListener {
-                            nextButtonClick(it)
+                        with(bindingClass.buttonNextRound) {
+                            this.isVisible = true
+                            this.setOnClickListener { nextButtonClick() }
                         }
                     }
 
@@ -75,30 +76,30 @@ class GameActivity : AppCompatActivity() {
                             it.isEnabled = false
                         }
 
-                        bindingClass.buttonRefresh.isVisible = true
-                        bindingClass.buttonRefresh.setOnClickListener {
-                            nextButtonClick(it)
+                        with(bindingClass.buttonRefresh) {
+                            this.isVisible = true
+                            this.setOnClickListener { refreshButtonClick() }
                         }
                     }
                 }
             }
-            
+
             grid.addView(pile)
         }
     }
 
     fun refreshGameboard(){
-        grid.removeAllViews()
+        bindingClass.grid.removeAllViews()
         bindingClass.textviewTitle.text = getString(R.string.textview_start_title)
         createGameboard()
     }
 
-    fun refreshButtonClick(view: View){
+    fun refreshButtonClick(){
         bindingClass.buttonRefresh.isVisible = false
         refreshGameboard()
     }
 
-    fun nextButtonClick(view: View){
+    fun nextButtonClick(){
         bindingClass.buttonNextRound.isVisible = false
         refreshGameboard()
     }
