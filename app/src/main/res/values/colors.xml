@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="title_text_color">#FF000000</color>
-    <color name="tile_unopened_background">#E0E0E0</color>
-    <color name="tile_disabled_background">#CDE0E0E0</color>
-    <color name="button_text_color">#FFFFFFFF</color>
-    <color name="button_red_background">#D50000</color>
-    <color name="button_blue_background">#304FFE</color>
-    <color name="button_green_background">#00C853</color>
+    <color name="title_text">#FF000000</color>
+    <color name="tile_background_unopened">#E0E0E0</color>
+    <color name="tile_background_disabled">#CDE0E0E0</color>
+    <color name="button_text">#FFFFFFFF</color>
+    <color name="button_background_red">#D50000</color>
+    <color name="button_background_blue">#304FFE</color>
+    <color name="button_background_green">#00C853</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

@@ -7,12 +7,12 @@
     tools:context=".gameactivity.GameActivity">
 
     <TextView
-        android:id="@+id/textview_title"
+        android:id="@+id/rules_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/textview_start_title"
+        android:text="@string/rules_title"
         android:textSize="24sp"
-        android:textColor="@color/title_text_color"
+        android:textColor="@color/title_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,31 +24,31 @@
         android:id="@+id/button_refresh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_red_background"
-        android:text="@string/button_refresh"
+        android:backgroundTint="@color/button_background_red"
+        android:text="@string/refresh_button"
         android:visibility="gone"
-        android:textColor="@color/button_text_color"
+        android:textColor="@color/button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.8"
-        android:onClick="refreshButtonClick"/>
+        android:onClick="onRefreshButtonClicked" />
 
     <Button
         android:id="@+id/button_next_round"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_green_background"
-        android:text="@string/button_next"
+        android:backgroundTint="@color/button_background_green"
+        android:text="@string/next_button"
         android:visibility="gone"
-        android:textColor="@color/button_text_color"
+        android:textColor="@color/button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.8"
-        android:onClick="nextButtonClick"/>
+        android:onClick="onNextButtonClicked" />
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/grid"

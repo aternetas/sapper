@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Sapper</string>
-    <string name="button_text">Open me!</string>
-    <string name="button_refresh">Refresh</string>
-    <string name="button_next">Next round</string>
-    <string name="textview_start_title">Find a green tile</string>
-    <string name="textview_next_title">Go on</string>
-    <string name="textview_win_title">U won</string>
-    <string name="textview_defeat_title">U lost</string>
+    <string name="open_button">Open me!</string>
+    <string name="refresh_button">Refresh</string>
+    <string name="next_button">Next round</string>
+    <string name="rules_title">Find a green tile</string>
+    <string name="continue_title">Go on</string>
+    <string name="winning_title">U won</string>
+    <string name="defeat_title">U lost</string>
 </resources>

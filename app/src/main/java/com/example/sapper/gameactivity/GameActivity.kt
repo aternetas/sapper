@@ -1,7 +1,6 @@
 package com.example.sapper.gameactivity
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -16,32 +15,32 @@ import kotlinx.android.synthetic.main.game_activity.*
 
 class GameActivity : AppCompatActivity() {
     private var vm: GameVM = GameVM()
-    private lateinit var bindingClass: GameActivityBinding
+    private lateinit var binding: GameActivityBinding
     private val tileUnopenedColor
-        get() = ContextCompat.getColor(this, R.color.tile_unopened_background)
+        get() = ContextCompat.getColor(this, R.color.tile_background_unopened)
     private val tileDisableColor
-        get() = ContextCompat.getColor(this, R.color.tile_disabled_background)
+        get() = ContextCompat.getColor(this, R.color.tile_background_disabled)
     private val tileNextColor
-        get() = ContextCompat.getColor(this, R.color.button_blue_background)
+        get() = ContextCompat.getColor(this, R.color.button_background_blue)
     private val tileWinColor
-        get() = ContextCompat.getColor(this, R.color.button_green_background)
+        get() = ContextCompat.getColor(this, R.color.button_background_green)
     private val tileDefeatColor
-        get() = ContextCompat.getColor(this, R.color.button_red_background)
+        get() = ContextCompat.getColor(this, R.color.button_background_red)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindingClass = GameActivityBinding.inflate(layoutInflater)
-        setContentView(bindingClass.root)
+        binding = GameActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         createGameboard()
     }
 
-    fun createGameboard(){
-        bindingClass.grid.rowCount = 3
-        bindingClass.grid.columnCount = 3
+    private fun createGameboard(){
+        binding.grid.rowCount = 3
+        binding.grid.columnCount = 3
         vm.shuffleCases()
         for (i in 0 until vm.getGameCasesCount()){
-            var pile = Button(this)
+            val pile = Button(this)
             pile.setBackgroundColor(tileUnopenedColor)
             val param = GridLayout.LayoutParams()
             param.setMargins(5)
@@ -53,32 +52,32 @@ class GameActivity : AppCompatActivity() {
                 when(vm.sendCaseName(i)){
                     GameCase.NEXT -> {
                         it.setBackgroundColor(tileNextColor)
-                        bindingClass.textviewTitle.text = getString(R.string.textview_next_title)
+                        binding.rulesTitle.text = getString(R.string.continue_title)
                     }
 
                     GameCase.WIN -> {
                         it.setBackgroundColor(tileWinColor)
-                        bindingClass.textviewTitle.text = getString(R.string.textview_win_title)
-                        bindingClass.grid.children.forEach {
+                        binding.rulesTitle.text = getString(R.string.winning_title)
+                        binding.grid.children.forEach {
                             it.isEnabled = false
                         }
 
-                        with(bindingClass.buttonNextRound) {
+                        with(binding.buttonNextRound) {
                             this.isVisible = true
-                            this.setOnClickListener { nextButtonClick() }
+                            this.setOnClickListener { onNextButtonClicked() }
                         }
                     }
 
                     GameCase.DEFEAT -> {
                         it.setBackgroundColor(tileDefeatColor)
-                        bindingClass.textviewTitle.text = getString(R.string.textview_defeat_title)
-                        bindingClass.grid.children.forEach {
+                        binding.rulesTitle.text = getString(R.string.defeat_title)
+                        binding.grid.children.forEach {
                             it.isEnabled = false
                         }
 
-                        with(bindingClass.buttonRefresh) {
+                        with(binding.buttonRefresh) {
                             this.isVisible = true
-                            this.setOnClickListener { refreshButtonClick() }
+                            this.setOnClickListener { onRefreshButtonClicked() }
                         }
                     }
                 }
@@ -88,19 +87,19 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    fun refreshGameboard(){
-        bindingClass.grid.removeAllViews()
-        bindingClass.textviewTitle.text = getString(R.string.textview_start_title)
+    private fun refreshGameboard(){
+        binding.grid.removeAllViews()
+        binding.rulesTitle.text = getString(R.string.rules_title)
         createGameboard()
     }
 
-    fun refreshButtonClick(){
-        bindingClass.buttonRefresh.isVisible = false
+    private fun onRefreshButtonClicked(){
+        binding.buttonRefresh.isVisible = false
         refreshGameboard()
     }
 
-    fun nextButtonClick(){
-        bindingClass.buttonNextRound.isVisible = false
+    private fun onNextButtonClicked(){
+        binding.buttonNextRound.isVisible = false
         refreshGameboard()
     }
 }
